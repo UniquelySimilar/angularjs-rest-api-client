@@ -1,14 +1,17 @@
-restApiClientApp.controller('StoryController', ['$scope', 'storyService', function($scope, storyService) {
-  $scope.templateUrl = 'app/components/story/showStories.html';
-  $scope.storyData = [];
-  $scope.renderTemplate = false;
-
-  storyService
-    .getData()
-    .then(function(response) {
-      //console.log("storyService.getData().then()");
-      //console.log(response.data);
-      $scope.storyData = response.data;
-      $scope.renderTemplate = true;
-    });
-}]);
+restApiClientApp
+.controller('StoryIndexController', ['$scope', 'storyIndexData', function($scope, storyIndexData) {
+  $scope.storyIndexData = [];
+  
+  if (storyIndexData.status == 200) // OK
+  {
+    $scope.storyIndexData = storyIndexData.data;
+    //console.log("From controller: storyIndexData");
+    //console.log($scope.storyIndexData);
+  }
+  else {  // Error
+    console.log("Error retrieving 'storyIndexData'");
+    console.log("response.status: " + storyIndexData.status);
+    console.log("response.statusText: " + storyIndexData.statusText);
+  }
+}])
+;

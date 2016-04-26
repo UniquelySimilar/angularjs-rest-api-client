@@ -1,1 +1,1 @@
-var restApiClientApp = angular.module('restApiClientApp', []);
+var restApiClientApp = angular.module('restApiClientApp', ['ngRoute']);

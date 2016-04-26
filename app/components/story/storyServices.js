@@ -1,9 +1,9 @@
 restApiClientApp
-.factory('storyService', ['$http', function($http) {
+.factory('storyIndexService', ['$http', function($http) {
   return {
-    getData: function() {
+    getIndexData: function() {
       var url = "http://laravel5.restapi.localhost/story";
-      //console.log("storiesService URL: " + url);
+      //console.log("storyService URL: " + url);
       var config = {cache: true};
 
       var promise = $http.get(url, config);
