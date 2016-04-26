@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rest API Client</title>
+
+  <link href="assets/lib/bootstrap/css/bootstrap.css" rel="stylesheet">
+</head>
+<body data-ng-app="restApiClientApp">
+  <div class="container" data-ng-controller="StoryController">
+    <h2>Rest API Client</h2>
+
+    <div data-ng-show="renderTemplate" data-ng-include="templateUrl"></div>
+    <h3 data-ng-hide="renderTemplate">LOADING STORIES...</h3>
+  </div>
+
+  <script src="assets/lib/jquery/jquery.js"></script>
+  <script src="assets/lib/bootstrap/js/bootstrap.js"></script>
+  <script src="assets/lib/angularjs/angular.js"></script>
+
+  <script src="app/app.module.js"></script>
+  <script src="app/app.services.js"></script>
+  <script src="app/components/story/storyController.js"></script>
+</body>
+</html>
