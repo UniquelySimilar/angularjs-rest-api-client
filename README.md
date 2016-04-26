@@ -1,0 +1,1 @@
+# RESTful Web Service Client implemented with AngularJS
