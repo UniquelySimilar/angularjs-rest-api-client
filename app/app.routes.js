@@ -13,6 +13,15 @@ restApiClientApp.config(function($routeProvider) {
         }
       }
     })
+    .when('/story/:id', {
+      templateUrl : 'app/components/story/storyShowView.html',
+      controller  : 'StoryShowController',
+      resolve: {
+        storyShowData: function($route, storyShowService) {
+          return storyShowService.getIndexData($route.current.params.id);
+        }
+      }
+    })
     .otherwise({
       redirectTo: '/story'
     });

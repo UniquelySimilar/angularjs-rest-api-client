@@ -8,7 +8,7 @@
   </thead>
   <tbody>
     <tr data-ng-repeat="story in storyIndexData">
-      <td>{{ story.id }}</td>
+      <td><a href="/#/story/{{ story.id }}">{{ story.id }}</a></td>
       <td>{{ story.title }}</td>
     </tr>
   </tbody>

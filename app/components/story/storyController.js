@@ -14,4 +14,19 @@ restApiClientApp
     console.log("response.statusText: " + storyIndexData.statusText);
   }
 }])
+.controller('StoryShowController', ['$scope', 'storyShowData', function($scope, storyShowData) {
+  $scope.story = {};
+  
+  if (storyShowData.status == 200) // OK
+  {
+    $scope.story = storyShowData.data;
+    //console.log("From controller: storyShowData");
+    //console.log($scope.storyShowData);
+  }
+  else {  // Error
+    console.log("Error retrieving 'storyShowData'");
+    console.log("response.status: " + storyShowData.status);
+    console.log("response.statusText: " + storyShowData.statusText);
+  }
+}])
 ;
