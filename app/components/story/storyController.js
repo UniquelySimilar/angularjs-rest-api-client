@@ -20,8 +20,8 @@ restApiClientApp
   if (storyShowData.status == 200) // OK
   {
     $scope.story = storyShowData.data;
-    //console.log("From controller: storyShowData");
-    //console.log($scope.storyShowData);
+    console.log("From controller: story");
+    console.log($scope.story);
   }
   else {  // Error
     console.log("Error retrieving 'storyShowData'");

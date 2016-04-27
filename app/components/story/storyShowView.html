@@ -1,1 +1,32 @@
-<h3>Hello from 'storyShowView.html'</h3>
+<h3>STORY</h3>
+<table class="table table-bordered">
+  <tr>
+    <td style="font-weight: bold;">ID</td>
+    <td>{{ story.id }}</td>
+  </tr>
+  <tr>
+    <td style="font-weight: bold;">TITLE</td>
+    <td>{{ story.title }}</td>
+  </tr>
+  <tr data-ng-hide="story.publication == 'NULL'">
+    <td style="font-weight: bold;">PUBLICATION</td>
+    <td>{{ story.publication }}</td>
+  </tr>
+  <tr data-ng-hide="story.issue == 'NULL'">
+    <td style="font-weight: bold;">ISSUE</td>
+    <td>{{ story.issue }}</td>
+  </tr>
+  <tr data-ng-hide="story.type == 'NULL'">
+    <td style="font-weight: bold;">TYPE</td>
+    <td>{{ story.type }}</td>
+  </tr>
+  <tr data-ng-hide="story.url == 'NULL'">
+    <td style="font-weight: bold;">URL</td>
+    <td>{{ story.url }}</td>
+  </tr>
+  <tr data-ng-hide="story.note == 'NULL'">
+    <td style="font-weight: bold;">NOTE</td>
+    <td>{{ story.note }}</td>
+  </tr>
+</table>
+<a href="/#/story" class="btn btn-default">Back to List</a>
