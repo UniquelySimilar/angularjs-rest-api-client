@@ -5,7 +5,7 @@ restApiClientApp
   if (storyIndexData.status == 200) // OK
   {
     $scope.storyIndexData = storyIndexData.data;
-    //console.log("From controller: storyIndexData");
+    //console.log("StoryIndexController data");
     //console.log($scope.storyIndexData);
   }
   else {  // Error
@@ -20,8 +20,16 @@ restApiClientApp
   if (storyShowData.status == 200) // OK
   {
     $scope.story = storyShowData.data;
-    console.log("From controller: story");
-    console.log($scope.story);
+    //console.log("StoryShowController data");
+    //console.log($scope.story);
+    // TODO: Possibly implement property value changes on server
+    for (var key in $scope.story) {
+      if ($scope.story.hasOwnProperty(key)) {
+        if ($scope.story[key] == 'NULL') {
+          $scope.story[key] = '';
+        };
+      }
+    }
   }
   else {  // Error
     console.log("Error retrieving 'storyShowData'");
