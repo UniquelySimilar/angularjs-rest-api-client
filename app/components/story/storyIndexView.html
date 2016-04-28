@@ -2,14 +2,17 @@
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>ID</th>
-      <th>Title</th>
+      <th>TITLE</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr data-ng-repeat="story in storyIndexData">
-      <td><a href="/#/story/{{ story.id }}">{{ story.id }}</a></td>
-      <td>{{ story.title }}</td>
+      <td style="width: 40%;">{{ story.title }}</td>
+      <td>
+        <a href="/#/story/{{ story.id }}" class="btn btn-default">Detail</a>
+        <a href="/#/story/{{ story.id }}/edit" class="btn btn-default">Edit</a>
+      </td>
     </tr>
   </tbody>
 

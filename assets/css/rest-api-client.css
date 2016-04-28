@@ -1,0 +1,5 @@
+#story-show-table tr td:first-child {
+  font-weight: bold;
+  width: 15%;
+  background-color: #F1F1F1;
+}
