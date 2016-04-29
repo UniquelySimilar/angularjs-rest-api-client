@@ -1,26 +1,26 @@
 restApiClientApp
-.controller('StoryIndexController', ['$scope', 'storyIndexData', function($scope, storyIndexData) {
-  $scope.storyIndexData = [];
+.controller('AllStoryController', ['$scope', 'allStoryData', function($scope, allStoryData) {
+  $scope.allStoryData = [];
   
-  if (storyIndexData.status == 200) // OK
+  if (allStoryData.status == 200) // OK
   {
-    $scope.storyIndexData = storyIndexData.data;
-    //console.log("StoryIndexController data");
-    //console.log($scope.storyIndexData);
+    $scope.allStoryData = allStoryData.data;
+    //console.log("AllStoryController data");
+    //console.log($scope.allStoryData);
   }
   else {  // Error
-    console.log("Error retrieving 'storyIndexData'");
-    console.log("response.status: " + storyIndexData.status);
-    console.log("response.statusText: " + storyIndexData.statusText);
+    console.log("Error retrieving 'allStoryData'");
+    console.log("response.status: " + allStoryData.status);
+    console.log("response.statusText: " + allStoryData.statusText);
   }
 }])
-.controller('StoryShowController', ['$scope', 'storyShowData', function($scope, storyShowData) {
+.controller('SingleStoryController', ['$scope', 'singleStoryData', function($scope, singleStoryData) {
   $scope.story = {};
   
-  if (storyShowData.status == 200) // OK
+  if (singleStoryData.status == 200) // OK
   {
-    $scope.story = storyShowData.data;
-    //console.log("StoryShowController data");
+    $scope.story = singleStoryData.data;
+    //console.log("SingleStoryController data");
     //console.log($scope.story);
     // TODO: Possibly implement property value changes on server
     for (var key in $scope.story) {
@@ -32,9 +32,9 @@ restApiClientApp
     }
   }
   else {  // Error
-    console.log("Error retrieving 'storyShowData'");
-    console.log("response.status: " + storyShowData.status);
-    console.log("response.statusText: " + storyShowData.statusText);
+    console.log("Error retrieving 'singleStoryData'");
+    console.log("response.status: " + singleStoryData.status);
+    console.log("response.statusText: " + singleStoryData.statusText);
   }
 }])
 ;

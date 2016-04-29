@@ -1,9 +1,9 @@
 restApiClientApp
-.factory('storyIndexService', ['$http', function($http) {
+.factory('allStoryService', ['$http', function($http) {
   return {
-    getIndexData: function() {
+    all: function() {
       var url = "http://laravel5.restapi.localhost/story";
-      //console.log("storyService URL: " + url);
+      //console.log("allStoryService URL: " + url);
       var config = {cache: true};
 
       var promise = $http.get(url, config);
@@ -12,11 +12,11 @@ restApiClientApp
     }
   };
 }])
-.factory('storyShowService', ['$http', function($http) {
+.factory('singleStoryService', ['$http', function($http) {
   return {
-    getIndexData: function(id) {
+    find: function(id) {
       var url = "http://laravel5.restapi.localhost/story/" + id;
-      console.log("storyService URL: " + url);
+      //console.log("singleStoryService URL: " + url);
       var config = {cache: true};
 
       var promise = $http.get(url, config);
