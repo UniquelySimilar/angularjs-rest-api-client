@@ -1,15 +1,34 @@
 <h3>CREATE STORY</h3>
-<form novalidate class="">
-  <input type="text" data-ng-model="story.title"><br>
-  <input type="text" data-ng-model="story.publication"><br>
-  <input type="text" data-ng-model="story.issue"><br>
-  <input type="text" data-ng-model="story.type"><br>
-  <input type="text" data-ng-model="story.url"><br>
-  <textarea rows="4" cols="50" data-ng-model="story.note">
-  <input type="button" ng-click="reset()" value="Reset" />
-  <input type="submit" ng-click="create(story)" value="Create" />
+<form id="story-create-form" novalidate class="">
+  <div class="form-group">
+    <label for="story-title">Title</label>
+    <input type="text" id="story-title" data-ng-model="story.title">
+    <span class="error-msg" data-ng-show="storyError.title">{{ storyError.title }}</span>
+  </div>
+  <div class="form-group">
+    <label for="story-publication">Publication</label>
+    <input type="text" id="story-publication" data-ng-model="story.publication">
+  </div>
+  <div class="form-group">
+    <label for="story-issue">Issue</label>
+    <input type="text" id="story-issue" data-ng-model="story.issue">
+  </div>
+  <div class="form-group">
+    <label for="story-type">Type</label>
+    <input type="text" id="story-type" data-ng-model="story.type">
+  </div>
+  <div class="form-group">
+    <label for="story-url">URL</label>
+    <input type="text" id="story-url" data-ng-model="story.url">
+  </div>
+  <div class="form-group">
+    <label for="story-note">Note</label>
+    <textarea id="story-note" rows="4" cols="50" data-ng-model="story.note"></textarea>
+  </div>
+  <input type="submit" class="btn btn-default" value="Create" data-ng-click="create(story)" >
+  
+  <a href="/#/story" class="btn btn-default">Cancel</a>
 </form>
-<a href="/#/story" class="btn btn-default">Cancel</a>
 <!--
   id serial NOT NULL,
   title character varying(100) NOT NULL,

@@ -38,19 +38,21 @@ restApiClientApp
   }
 }])
 .controller('CreateStoryController', ['$scope', function($scope) {
-  $scope.story = {};
-
-  // TODO: Implement server controller method that returns nothing to use standard client routing
+  //console.log("CreateStoryController");
+  $scope.storyError = {};
 
   $scope.create = function(story) {
-    $scope.story = angular.copy(story);
-  };
+    console.log("CreateStoryController.create()");
+    console.log(story);
+    if (story == undefined || story.title == undefined) {
+      $scope.storyError.title = "* required";
+    }
+    else {
+      $scope.storyError = {};
 
-  $scope.reset = function() {
-    $scope.story = angular.copy($scope.story);
+      // Submit request
+    }
   };
-
-  $scope.reset();
   
 }])
 ;

@@ -3,3 +3,19 @@
   width: 15%;
   background-color: #F1F1F1;
 }
+
+#story-create-form input.ng-invalid.ng-touched {
+  background-color: #FA787E;
+}
+
+#story-create-form label {
+  width: 15%;
+}
+
+#story-note {
+  vertical-align: text-top;
+}
+
+.error-msg {
+  color: red;
+}

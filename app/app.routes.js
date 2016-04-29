@@ -13,6 +13,10 @@ restApiClientApp.config(function($routeProvider) {
         }
       }
     })
+    .when('/story/create', {
+      templateUrl : 'app/components/story/storyCreateView.html',
+      controller  : 'CreateStoryController'
+    })
     .when('/story/:id', {
       templateUrl : 'app/components/story/storyShowView.html',
       controller  : 'SingleStoryController',
@@ -30,10 +34,6 @@ restApiClientApp.config(function($routeProvider) {
           return singleStoryService.find($route.current.params.id);
         }
       }
-    })
-    .when('/story/create', {
-      templateUrl : 'app/components/story/storyCreateView.html',
-      controller  : 'CreateStoryController'
     })
     .otherwise({
       redirectTo: '/story'
