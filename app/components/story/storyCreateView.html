@@ -1,0 +1,21 @@
+<h3>CREATE STORY</h3>
+<form novalidate class="">
+  <input type="text" data-ng-model="story.title"><br>
+  <input type="text" data-ng-model="story.publication"><br>
+  <input type="text" data-ng-model="story.issue"><br>
+  <input type="text" data-ng-model="story.type"><br>
+  <input type="text" data-ng-model="story.url"><br>
+  <textarea rows="4" cols="50" data-ng-model="story.note">
+  <input type="button" ng-click="reset()" value="Reset" />
+  <input type="submit" ng-click="create(story)" value="Create" />
+</form>
+<a href="/#/story" class="btn btn-default">Cancel</a>
+<!--
+  id serial NOT NULL,
+  title character varying(100) NOT NULL,
+  publication character varying(100) DEFAULT NULL::character varying,
+  issue character varying(100) DEFAULT NULL::character varying,
+  type character varying(50) DEFAULT NULL::character varying,
+  url character varying(200) DEFAULT NULL::character varying,
+  note character varying(200) DEFAULT NULL::character varying,
+-->

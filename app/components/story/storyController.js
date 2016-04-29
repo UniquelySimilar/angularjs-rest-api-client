@@ -37,4 +37,20 @@ restApiClientApp
     console.log("response.statusText: " + singleStoryData.statusText);
   }
 }])
+.controller('CreateStoryController', ['$scope', function($scope) {
+  $scope.story = {};
+
+  // TODO: Implement server controller method that returns nothing to use standard client routing
+
+  $scope.create = function(story) {
+    $scope.story = angular.copy(story);
+  };
+
+  $scope.reset = function() {
+    $scope.story = angular.copy($scope.story);
+  };
+
+  $scope.reset();
+  
+}])
 ;

@@ -31,6 +31,10 @@ restApiClientApp.config(function($routeProvider) {
         }
       }
     })
+    .when('/story/create', {
+      templateUrl : 'app/components/story/storyCreateView.html',
+      controller  : 'CreateStoryController'
+    })
     .otherwise({
       redirectTo: '/story'
     });
