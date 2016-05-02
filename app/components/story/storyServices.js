@@ -25,3 +25,16 @@ restApiClientApp
     }
   };
 }])
+.factory('createStoryService', ['$http', function($http) {
+  return {
+    create: function(story) {
+      var url = "http://laravel5.restapi.localhost/story";
+      console.log("createStoryService URL: " + url);
+      console.log(story);
+
+      var promise = $http.post(url, story);
+
+      return promise;
+    }
+  };
+}])

@@ -9,6 +9,11 @@
   <link href="assets/css/rest-api-client.css" rel="stylesheet">
 </head>
 <body data-ng-app="restApiClientApp">
+
+  <div data-ng-controller="TestController">
+    <input type="button" class="btn btn-default" value="Click to test" data-ng-click="testFunction()">
+  </div>
+
   <div class="container">
     <h2>Rest API Client</h2>
 
@@ -24,5 +29,7 @@
   <script src="app/app.routes.js"></script>
   <script src="app/components/story/storyServices.js"></script>
   <script src="app/components/story/storyController.js"></script>
+
+  <script src="app/components/test/testController.js"></script>
 </body>
 </html>

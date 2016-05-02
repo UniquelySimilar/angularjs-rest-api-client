@@ -44,14 +44,10 @@ restApiClientApp
   $scope.create = function(story) {
     console.log("CreateStoryController.create()");
     console.log(story);
-    if (story == undefined || story.title == undefined) {
-      $scope.storyError.title = "* required";
-    }
-    else {
-      $scope.storyError = {};
 
-      // Submit request
-    }
+    // TODO: Add validation
+    var promise = $http.post(url, story);
+    promise.then(function(response) {}, function(rejectReason){});
   };
   
 }])
