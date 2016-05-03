@@ -37,17 +37,21 @@ restApiClientApp
     console.log("response.statusText: " + singleStoryData.statusText);
   }
 }])
-.controller('CreateStoryController', ['$scope', function($scope) {
+.controller('CreateStoryController', ['$scope', 'createStoryService', function($scope, createStoryService) {
   //console.log("CreateStoryController");
-  $scope.storyError = {};
+  //$scope.storyError = {};
 
   $scope.create = function(story) {
     console.log("CreateStoryController.create()");
     console.log(story);
 
     // TODO: Add validation
-    var promise = $http.post(url, story);
-    promise.then(function(response) {}, function(rejectReason){});
+    var promise = createStoryService.create(story);
+    promise.then(function(response) {
+      console.log("Story creation succeeded");
+    }, function(rejectReason){
+      console.log("Story creation failed: " + rejectReason);
+    });
   };
   
 }])
