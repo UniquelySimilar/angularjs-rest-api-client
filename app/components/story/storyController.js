@@ -37,18 +37,22 @@ restApiClientApp
     console.log("response.statusText: " + singleStoryData.statusText);
   }
 }])
-.controller('CreateStoryController', ['$scope', 'createStoryService', function($scope, createStoryService) {
+.controller('CreateStoryController', ['$scope', '$window', 'createStoryService',
+  function($scope, $window, createStoryService) {
   //console.log("CreateStoryController");
   //$scope.storyError = {};
 
   $scope.create = function(story) {
     console.log("CreateStoryController.create()");
-    console.log(story);
+    //console.log(story);
 
-    // TODO: Add validation
+    // TODO: Add form validation on client and/or on server
     var promise = createStoryService.create(story);
     promise.then(function(response) {
       console.log("Story creation succeeded");
+
+      // Redirect to index view
+      $window.location.href = '/#/story';
     }, function(rejectReason){
       console.log("Story creation failed: " + rejectReason);
     });
