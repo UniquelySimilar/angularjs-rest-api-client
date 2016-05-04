@@ -42,12 +42,12 @@ restApiClientApp
   //console.log("CreateStoryController");
   //$scope.storyError = {};
 
-  $scope.create = function(story) {
-    console.log("CreateStoryController.create()");
+  $scope.store = function(story) {
+    console.log("CreateStoryController.store()");
     //console.log(story);
 
     // TODO: Add form validation on client and/or on server
-    var promise = createStoryService.create(story);
+    var promise = createStoryService.store(story);
     promise.then(function(response) {
       console.log("Story creation succeeded");
 
@@ -57,6 +57,25 @@ restApiClientApp
       console.log("Story creation failed: " + rejectReason);
     });
   };
-  
+}])
+.controller('EditStoryController', ['$scope', '$window', 'editStoryService',
+  function($scope, $window, editStoryService) {
+  //console.log("EditStoryController");
+
+  $scope.update = function(story) {
+    console.log("EditStoryController.update()");
+    //console.log(story);
+
+    // TODO: Add form validation on client and/or on server
+    var promise = createStoryService.update(story);
+    promise.then(function(response) {
+      console.log("Story update succeeded");
+
+      // Redirect to index view
+      $window.location.href = '/#/story';
+    }, function(rejectReason){
+      console.log("Story update failed: " + rejectReason);
+    });
+  };
 }])
 ;

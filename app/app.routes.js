@@ -1,7 +1,7 @@
 restApiClientApp.config(function($routeProvider) {
   $routeProvider
     .when('/story', {
-      templateUrl : 'app/components/story/storyIndexView.html',
+      templateUrl : 'app/components/story/views/storyIndexView.html',
       controller  : 'AllStoryController',
       // 'resolve' is a map of dependencies injected into the controller.  'storyService.getIndexData()'
       // returns a promise.
@@ -14,11 +14,11 @@ restApiClientApp.config(function($routeProvider) {
       }
     })
     .when('/story/create', {
-      templateUrl : 'app/components/story/storyCreateView.html',
+      templateUrl : 'app/components/story/views/storyCreateView.html',
       controller  : 'CreateStoryController'
     })
     .when('/story/:id', {
-      templateUrl : 'app/components/story/storyShowView.html',
+      templateUrl : 'app/components/story/views/storyShowView.html',
       controller  : 'SingleStoryController',
       resolve: {
         singleStoryData: function($route, singleStoryService) {
@@ -27,7 +27,7 @@ restApiClientApp.config(function($routeProvider) {
       }
     })
     .when('/story/:id/edit', {
-      templateUrl : 'app/components/story/storyEditView.html',
+      templateUrl : 'app/components/story/views/storyEditView.html',
       controller  : 'SingleStoryController',
       resolve: {
         singleStoryData: function($route, singleStoryService) {
