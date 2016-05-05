@@ -14,7 +14,7 @@ restApiClientApp.config(function($routeProvider) {
       }
     })
     .when('/story/create', {
-      templateUrl : 'app/components/story/views/storyCreateView.html',
+      templateUrl : 'app/components/story/views/storyFormView.html',
       controller  : 'CreateStoryController'
     })
     .when('/story/:id', {
@@ -27,13 +27,8 @@ restApiClientApp.config(function($routeProvider) {
       }
     })
     .when('/story/:id/edit', {
-      templateUrl : 'app/components/story/views/storyEditView.html',
-      controller  : 'SingleStoryController',
-      resolve: {
-        singleStoryData: function($route, singleStoryService) {
-          return singleStoryService.find($route.current.params.id);
-        }
-      }
+      templateUrl : 'app/components/story/views/storyFormView.html',
+      controller  : 'EditStoryController'
     })
     .otherwise({
       redirectTo: '/story'

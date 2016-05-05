@@ -40,14 +40,14 @@ restApiClientApp
 .controller('CreateStoryController', ['$scope', '$window', 'createStoryService',
   function($scope, $window, createStoryService) {
   //console.log("CreateStoryController");
-  //$scope.storyError = {};
+  $scope.formFunction = "CREATE";
 
-  $scope.store = function(story) {
+  $scope.save = function(story) {
     console.log("CreateStoryController.store()");
     //console.log(story);
 
     // TODO: Add form validation on client and/or on server
-    var promise = createStoryService.store(story);
+    var promise = createStoryService.save(story);
     promise.then(function(response) {
       console.log("Story creation succeeded");
 
@@ -58,24 +58,43 @@ restApiClientApp
     });
   };
 }])
-.controller('EditStoryController', ['$scope', '$window', 'editStoryService',
-  function($scope, $window, editStoryService) {
+.controller('EditStoryController', ['$scope', '$window', '$routeParams', 'singleStoryService', 'editStoryService',
+  function($scope, $window, $routeParams, singleStoryService, editStoryService) {
   //console.log("EditStoryController");
 
-  $scope.update = function(story) {
+  $scope.formFunction = "EDIT";
+  var id = $routeParams.id;
+  console.log("ID: " + id);
+  $scope.story = {};
+
+  var singleStoryPromise = singleStoryService.find(id);
+  singleStoryPromise.then(
+    function(response) {
+      console.log("Story find succeeded");
+      $scope.story = response.data;
+    },
+    function(rejectReason) {
+      console.log("Story find failed: " + rejectReason);
+    }
+  );
+
+  $scope.save = function(story) {
     console.log("EditStoryController.update()");
     //console.log(story);
 
     // TODO: Add form validation on client and/or on server
-    var promise = createStoryService.update(story);
-    promise.then(function(response) {
-      console.log("Story update succeeded");
+    var promise = createStoryService.save(story);
+    promise.then(
+      function(response) {
+        console.log("Story update succeeded");
 
-      // Redirect to index view
-      $window.location.href = '/#/story';
-    }, function(rejectReason){
-      console.log("Story update failed: " + rejectReason);
-    });
+        // Redirect to index view
+        //$window.location.href = '/#/story';
+      },
+      function(rejectReason) {
+        console.log("Story update failed: " + rejectReason);
+      }
+    );
   };
 }])
 ;

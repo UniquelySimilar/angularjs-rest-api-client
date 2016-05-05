@@ -1,4 +1,4 @@
-<h3>CREATE STORY</h3>
+<h3>{{ formFunction }} STORY</h3>
 <form id="story-create-form" novalidate class="">
   <div class="form-group">
     <label for="story-title">Title</label>
@@ -25,7 +25,7 @@
     <label for="story-note">Note</label>
     <textarea id="story-note" rows="4" cols="50" data-ng-model="story.note"></textarea>
   </div>
-  <input type="submit" class="btn btn-default" value="Create" data-ng-click="create(story)" >
+  <input type="submit" class="btn btn-default" value="Save" data-ng-click="save(story)" >
   
   <a href="/#/story" class="btn btn-default">Cancel</a>
 </form>
