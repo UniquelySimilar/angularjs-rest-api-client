@@ -14,7 +14,8 @@ restApiClientApp
     console.log("response.statusText: " + allStoryData.statusText);
   }
 }])
-.controller('SingleStoryController', ['$scope', 'singleStoryData', function($scope, singleStoryData) {
+.controller('SingleStoryController', ['$scope', 'singleStoryData', 'utilService',
+    function($scope, singleStoryData, utilService) {
   $scope.story = {};
   
   if (singleStoryData.status == 200) // OK
@@ -23,13 +24,7 @@ restApiClientApp
     //console.log("SingleStoryController data");
     //console.log($scope.story);
     // TODO: Possibly implement property value changes on server
-    for (var key in $scope.story) {
-      if ($scope.story.hasOwnProperty(key)) {
-        if ($scope.story[key] == 'NULL') {
-          $scope.story[key] = '';
-        };
-      }
-    }
+    utilService.replaceNull($scope.story);
   }
   else {  // Error
     console.log("Error retrieving 'singleStoryData'");
@@ -58,8 +53,9 @@ restApiClientApp
     });
   };
 }])
-.controller('EditStoryController', ['$scope', '$window', '$routeParams', 'singleStoryService', 'editStoryService',
-  function($scope, $window, $routeParams, singleStoryService, editStoryService) {
+.controller('EditStoryController',
+  ['$scope', '$window', '$routeParams', 'singleStoryService', 'editStoryService', 'utilService',
+    function($scope, $window, $routeParams, singleStoryService, editStoryService, utilService) {
   //console.log("EditStoryController");
 
   $scope.formFunction = "EDIT";
@@ -72,6 +68,7 @@ restApiClientApp
     function(response) {
       console.log("Story find succeeded");
       $scope.story = response.data;
+      utilService.replaceNull($scope.story);
     },
     function(rejectReason) {
       console.log("Story find failed: " + rejectReason);
