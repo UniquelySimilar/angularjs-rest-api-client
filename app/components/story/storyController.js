@@ -32,8 +32,8 @@ restApiClientApp
     console.log("response.statusText: " + singleStoryData.statusText);
   }
 }])
-.controller('CreateStoryController', ['$scope', '$window', 'createStoryService',
-  function($scope, $window, createStoryService) {
+.controller('CreateStoryController', ['$scope', '$window', 'saveStoryService',
+  function($scope, $window, saveStoryService) {
   //console.log("CreateStoryController");
   $scope.formFunction = "CREATE";
 
@@ -42,7 +42,7 @@ restApiClientApp
     //console.log(story);
 
     // TODO: Add form validation on client and/or on server
-    var promise = createStoryService.save(story);
+    var promise = saveStoryService.save(story);
     promise.then(function(response) {
       console.log("Story creation succeeded");
 
@@ -54,19 +54,19 @@ restApiClientApp
   };
 }])
 .controller('EditStoryController',
-  ['$scope', '$window', '$routeParams', 'singleStoryService', 'editStoryService', 'utilService',
-    function($scope, $window, $routeParams, singleStoryService, editStoryService, utilService) {
+  ['$scope', '$window', '$routeParams', 'singleStoryService', 'updateStoryService', 'utilService',
+    function($scope, $window, $routeParams, singleStoryService, updateStoryService, utilService) {
   //console.log("EditStoryController");
 
   $scope.formFunction = "EDIT";
   var id = $routeParams.id;
-  console.log("ID: " + id);
+  //console.log("ID: " + id);
   $scope.story = {};
 
   var singleStoryPromise = singleStoryService.find(id);
   singleStoryPromise.then(
     function(response) {
-      console.log("Story find succeeded");
+      //console.log("Story find succeeded");
       $scope.story = response.data;
       utilService.replaceNull($scope.story);
     },
@@ -76,17 +76,17 @@ restApiClientApp
   );
 
   $scope.save = function(story) {
-    console.log("EditStoryController.update()");
+    //console.log("EditStoryController.update()");
     //console.log(story);
 
     // TODO: Add form validation on client and/or on server
-    var promise = createStoryService.save(story);
+    var promise = updateStoryService.save(story);
     promise.then(
       function(response) {
-        console.log("Story update succeeded");
+        //console.log("Story update succeeded");
 
-        // Redirect to index view
-        //$window.location.href = '/#/story';
+        // Redirect to story detail view
+        $window.location.href = '/#/story/' + id;
       },
       function(rejectReason) {
         console.log("Story update failed: " + rejectReason);

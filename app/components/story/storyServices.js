@@ -4,9 +4,7 @@ restApiClientApp
     all: function() {
       var url = "http://laravel5.restapi.localhost/story";
       //console.log("allStoryService URL: " + url);
-      var config = {cache: true};
-
-      var promise = $http.get(url, config);
+      var promise = $http.get(url);
 
       return promise;
     }
@@ -17,38 +15,34 @@ restApiClientApp
     find: function(id) {
       var url = "http://laravel5.restapi.localhost/story/" + id;
       //console.log("singleStoryService URL: " + url);
-      var config = {cache: true};
-
-      var promise = $http.get(url, config);
+      var promise = $http.get(url);
 
       return promise;
     }
   };
 }])
-.factory('createStoryService', ['$http', function($http) {
+.factory('saveStoryService', ['$http', function($http) {
   return {
     save: function(story) {
       var url = "http://laravel5.restapi.localhost/story";
-      //console.log("createStoryService URL: " + url);
+      //console.log("saveStoryService URL: " + url);
       //console.log(story);
-
       var promise = $http.post(url, story);
 
       return promise;
     }
   };
 }])
-.factory('editStoryService', ['$http', function($http) {
+.factory('updateStoryService', ['$http', function($http) {
   return {
     save: function(story) {
-      var url = "http://laravel5.restapi.localhost/story";
-      //console.log("editStoryService URL: " + url);
+      var url = "http://laravel5.restapi.localhost/story/" + story.id;
+      //console.log("updateStoryService URL: " + url);
       //console.log(story);
-
-      //var promise = $http.post(url, story);
-      var promise = "TBD";
+      var promise = $http.put(url, story);
 
       return promise;
     }
   };
 }])
+;
