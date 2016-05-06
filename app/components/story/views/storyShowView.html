@@ -1,10 +1,6 @@
 <h3>STORY</h3>
 <table id="story-show-table" class="table table-bordered">
   <tr>
-    <td>ID</td>
-    <td>{{ story.id }}</td>
-  </tr>
-  <tr>
     <td>TITLE</td>
     <td>{{ story.title }}</td>
   </tr>
@@ -31,3 +27,4 @@
   </tr>
 </table>
 <a href="/#/story" class="btn btn-default">Back to List</a>
+<a href="/#/story/{{ story.id }}/edit" class="btn btn-default">Edit</a>
