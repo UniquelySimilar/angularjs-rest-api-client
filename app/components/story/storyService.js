@@ -32,6 +32,14 @@ restApiClientApp
       var promise = $http.put(url, story);
 
       return promise;
+    },
+    delete: function(id) {
+      console.log("storyService.delete() for id = " + id);
+      
+      url = "http://laravel5.restapi.localhost/story/" + id;
+      var promise = $http.delete(url);
+
+      return promise;
     }
   };
 }])

@@ -5,15 +5,39 @@
     <tr>
       <th>TITLE</th>
       <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
     <tr data-ng-repeat="story in allStoryData">
       <td style="width: 40%;">{{ story.title }}</td>
       <td>
-        <a href="/#/story/{{ story.id }}" class="btn btn-default">Detail / Edit</a>
+        <a href="/#/story/{{ story.id }}" class="btn btn-primary">Detail / Edit</a>
+      </td>
+      <td>
+        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#delete-story-modal" 
+        data-ng-click="setCurrentStory(story.id, story.title)">
+          Delete
+        </button>
       </td>
     </tr>
   </tbody>
 
+  <!-- Delete Story Modal -->
+  <div class="modal fade" id="delete-story-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h4 class="modal-title">Delete '{{ currentStory.title }}'?</h4>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" data-ng-click="delete(currentStory.id)">Delete</button>
+        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 </table>

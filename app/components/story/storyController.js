@@ -1,5 +1,6 @@
 restApiClientApp
-.controller('AllStoryController', ['$scope', 'allStoryData', function($scope, allStoryData) {
+.controller('AllStoryController', ['$scope', 'allStoryData', 'storyService',
+    function($scope, allStoryData, storyService) {
   $scope.allStoryData = [];
   
   if (allStoryData.status == 200) // OK
@@ -12,6 +13,17 @@ restApiClientApp
     console.log("Error retrieving 'allStoryData'");
     console.log("response.status: " + allStoryData.status);
     console.log("response.statusText: " + allStoryData.statusText);
+  }
+
+  $scope.currentStory = {};
+  $scope.setCurrentStory = function(id, title) {
+    $scope.currentStory.id = id;
+    $scope.currentStory.title = title;
+  }
+
+  $scope.delete = function(id) {
+    console.log("delete story where ID = " + id);
+    storyService.delete(id);
   }
 }])
 .controller('SingleStoryController', ['$scope', 'singleStoryData', 'utilService',
