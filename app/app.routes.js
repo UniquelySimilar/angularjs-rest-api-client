@@ -8,8 +8,8 @@ restApiClientApp.config(function($routeProvider) {
       // The router will wait for the promise to be resolved or rejected before the controller is instantiated.
       // See https://docs.angularjs.org/api/ngRoute/provider/$routeProvider
       resolve: {
-        allStoryData: function(allStoryService) {
-          return allStoryService.all();
+        allStoryData: function(storyService) {
+          return storyService.all();
         }
       }
     })
@@ -21,8 +21,8 @@ restApiClientApp.config(function($routeProvider) {
       templateUrl : 'app/components/story/views/storyShowView.html',
       controller  : 'SingleStoryController',
       resolve: {
-        singleStoryData: function($route, singleStoryService) {
-          return singleStoryService.find($route.current.params.id);
+        singleStoryData: function($route, storyService) {
+          return storyService.find($route.current.params.id);
         }
       }
     })

@@ -32,19 +32,19 @@ restApiClientApp
     console.log("response.statusText: " + singleStoryData.statusText);
   }
 }])
-.controller('CreateStoryController', ['$scope', '$window', 'saveStoryService',
-  function($scope, $window, saveStoryService) {
+.controller('CreateStoryController', ['$scope', '$window', 'storyService',
+  function($scope, $window, storyService) {
   //console.log("CreateStoryController");
   $scope.formFunction = "CREATE";
 
   $scope.save = function(story) {
-    console.log("CreateStoryController.store()");
+    //console.log("CreateStoryController.store()");
     //console.log(story);
 
     // TODO: Add form validation on client and/or on server
-    var promise = saveStoryService.save(story);
+    var promise = storyService.save(story);
     promise.then(function(response) {
-      console.log("Story creation succeeded");
+      //console.log("Story creation succeeded");
 
       // Redirect to index view
       $window.location.href = '/#/story';
@@ -54,8 +54,8 @@ restApiClientApp
   };
 }])
 .controller('EditStoryController',
-  ['$scope', '$window', '$routeParams', 'singleStoryService', 'updateStoryService', 'utilService',
-    function($scope, $window, $routeParams, singleStoryService, updateStoryService, utilService) {
+  ['$scope', '$window', '$routeParams', 'storyService', 'utilService',
+    function($scope, $window, $routeParams, storyService, utilService) {
   //console.log("EditStoryController");
 
   $scope.formFunction = "EDIT";
@@ -63,7 +63,7 @@ restApiClientApp
   //console.log("ID: " + id);
   $scope.story = {};
 
-  var singleStoryPromise = singleStoryService.find(id);
+  var singleStoryPromise = storyService.find(id);
   singleStoryPromise.then(
     function(response) {
       //console.log("Story find succeeded");
@@ -80,7 +80,7 @@ restApiClientApp
     //console.log(story);
 
     // TODO: Add form validation on client and/or on server
-    var promise = updateStoryService.save(story);
+    var promise = storyService.update(story);
     promise.then(
       function(response) {
         //console.log("Story update succeeded");
