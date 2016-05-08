@@ -21,19 +21,20 @@ restApiClientApp
     $scope.currentStory.title = title;
   }
 
+  // Event handler to reload the current page once the modal has finished being hidden
+  $('#delete-story-modal').on('hidden.bs.modal', function (e) {
+    console.log('hidden.bs.modal event handler called');
+    $route.reload();
+  })
+
   $scope.delete = function(id) {
-    console.log("delete story where ID = " + id);
+    //console.log("delete story where ID = " + id);
     var promise = storyService.delete(id);
     promise.then(function(response) {
-      console.log("Story deletion succeeded");
+      //console.log("Story deletion succeeded");
+      // Hide the modal manually, which should trigger the event handler defined above
+      $('#delete-story-modal').modal('hide');
 
-      // Reload the current page
-      // TODO: Determine how to close the dialog including removing backdrop AND refresh the list
-      // Possibly intermittent problem.  May be timing related.
-      // Possible solution: move the dialog HTML to from 'storyIndexView.html' to 'index.html'
-      //$window.location.href = '/#/story'; // Dialog closes including backdrop but list not refreshed
-      $route.reload();  // Dialog closes and list refreshed but backdrop remains intermittently
-      //$('.modal-backdrop').remove();  // This may have helped. UPDATE: Removed the scrollbar.
     }, function(rejectReason){
       console.log("Story deletion failed: " + rejectReason);
     });
@@ -48,7 +49,6 @@ restApiClientApp
     $scope.story = singleStoryData.data;
     //console.log("SingleStoryController data");
     //console.log($scope.story);
-    // TODO: Possibly implement property value changes on server
     utilService.replaceNull($scope.story);
   }
   else {  // Error
