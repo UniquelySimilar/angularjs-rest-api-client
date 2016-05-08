@@ -1,6 +1,6 @@
 restApiClientApp
-.controller('AllStoryController', ['$scope', 'allStoryData', 'storyService',
-    function($scope, allStoryData, storyService) {
+.controller('AllStoryController', ['$scope', '$route','allStoryData', 'storyService',
+    function($scope, $route, allStoryData, storyService) {
   $scope.allStoryData = [];
   
   if (allStoryData.status == 200) // OK
@@ -23,7 +23,15 @@ restApiClientApp
 
   $scope.delete = function(id) {
     console.log("delete story where ID = " + id);
-    storyService.delete(id);
+    var promise = storyService.delete(id);
+    promise.then(function(response) {
+      console.log("Story deletion succeeded");
+
+      // Reload the current page
+      $route.reload();
+    }, function(rejectReason){
+      console.log("Story deletion failed: " + rejectReason);
+    });
   }
 }])
 .controller('SingleStoryController', ['$scope', 'singleStoryData', 'utilService',
