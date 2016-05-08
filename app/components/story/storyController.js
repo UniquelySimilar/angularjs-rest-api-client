@@ -1,5 +1,5 @@
 restApiClientApp
-.controller('AllStoryController', ['$scope', '$route','allStoryData', 'storyService',
+.controller('AllStoryController', ['$scope', '$route', 'allStoryData', 'storyService',
     function($scope, $route, allStoryData, storyService) {
   $scope.allStoryData = [];
   
@@ -28,7 +28,12 @@ restApiClientApp
       console.log("Story deletion succeeded");
 
       // Reload the current page
-      $route.reload();
+      // TODO: Determine how to close the dialog including removing backdrop AND refresh the list
+      // Possibly intermittent problem.  May be timing related.
+      // Possible solution: move the dialog HTML to from 'storyIndexView.html' to 'index.html'
+      //$window.location.href = '/#/story'; // Dialog closes including backdrop but list not refreshed
+      $route.reload();  // Dialog closes and list refreshed but backdrop remains intermittently
+      //$('.modal-backdrop').remove();  // This may have helped. UPDATE: Removed the scrollbar.
     }, function(rejectReason){
       console.log("Story deletion failed: " + rejectReason);
     });
