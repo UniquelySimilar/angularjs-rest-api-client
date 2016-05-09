@@ -6,7 +6,6 @@ restApiClientApp
   var storyDataChunks = [];
   $scope.currentStoryChunk = [];
   var chunkLength = 6;
-  var currentPageIndex = 0;
   var lastPageIndex = 0;
   
   if (allStoryData.status == 200) // OK
@@ -19,7 +18,21 @@ restApiClientApp
     storyDataChunks = utilService.arrayChunk($scope.allStoryData, chunkLength);
     lastPageIndex = storyDataChunks.length - 1;
     //console.log(storyDataChunks);
-    $scope.currentStoryChunk = storyDataChunks[currentPageIndex];
+
+    // Handle case where deleted story was only story on last page
+    if (storyService.currentPageIndex > lastPageIndex) {
+      storyService.currentPageIndex = lastPageIndex;
+    }
+
+    // Handle case where new story resulted in new page
+    if (storyService.currentRcdCount != undefined &&  // Has been initialized
+     ($scope.allStoryData.length > storyService.currentRcdCount) &&
+      (($scope.allStoryData.length % chunkLength) == 1) ) {
+      storyService.currentPageIndex++;
+    }
+    storyService.currentRcdCount = $scope.allStoryData.length;
+
+    $scope.currentStoryChunk = storyDataChunks[storyService.currentPageIndex];
   }
   else {  // Error
     console.log("Error retrieving 'allStoryData'");
@@ -29,27 +42,27 @@ restApiClientApp
 
   // Story table pagination
   $scope.nextPage = function() {
-    if (currentPageIndex < lastPageIndex) {
+    if (storyService.currentPageIndex < lastPageIndex) {
       //console.log("nextPage()");
-      currentPageIndex++;
-      $scope.currentStoryChunk = storyDataChunks[currentPageIndex];
+      storyService.currentPageIndex++;
+      $scope.currentStoryChunk = storyDataChunks[storyService.currentPageIndex];
     }
   }
 
   $scope.prevPage = function() {
-    if (currentPageIndex > 0) {
+    if (storyService.currentPageIndex > 0) {
       //console.log("prevPage()");
-      currentPageIndex--;
-      $scope.currentStoryChunk = storyDataChunks[currentPageIndex];
+      storyService.currentPageIndex--;
+      $scope.currentStoryChunk = storyDataChunks[storyService.currentPageIndex];
     }
   }
 
   $scope.isFirstPage = function() {
-    return currentPageIndex == 0;
+    return storyService.currentPageIndex == 0;
   }
 
   $scope.isLastPage = function() {
-    return currentPageIndex == lastPageIndex;
+    return storyService.currentPageIndex == lastPageIndex;
   }
 
   // Set current story for deletion
@@ -78,6 +91,7 @@ restApiClientApp
     });
   }
 }])
+// SingleStoryController
 .controller('SingleStoryController', ['$scope', 'singleStoryData', 'utilService',
     function($scope, singleStoryData, utilService) {
   $scope.story = {};
@@ -100,6 +114,9 @@ restApiClientApp
   function($scope, $window, storyService) {
   //console.log("CreateStoryController");
   $scope.formFunction = "CREATE";
+
+  // Set focus on story title
+  $('#story-title').focus();
 
   $scope.save = function(story) {
     //console.log("CreateStoryController.store()");

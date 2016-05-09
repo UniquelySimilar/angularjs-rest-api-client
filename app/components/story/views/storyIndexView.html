@@ -1,5 +1,13 @@
 <h3>STORIES</h3>
-<a href="/#/story/create" class="btn btn-default">Create Story</a>
+<div style="margin-bottom: 10px;">
+  <a href="/#/story/create" class="btn btn-default">Create Story</a>
+</div>
+<p>
+  <button class="btn btn-default btn-sm" type="button" data-ng-click="prevPage()" data-ng-disabled="isFirstPage()">
+    Prev</button>
+  <button class="btn btn-default btn-sm" type="button" data-ng-click="nextPage()" data-ng-disabled="isLastPage()">
+    Next</button>
+</p>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -41,6 +49,3 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 </table>
-
-<button class="btn btn-default btn-sm" type="button" data-ng-click="prevPage()" data-ng-disabled="isFirstPage()">Prev</button>
-<button class="btn btn-default btn-sm" type="button" data-ng-click="nextPage()" data-ng-disabled="isLastPage()">Next</button>

@@ -1,6 +1,9 @@
 restApiClientApp
 .factory('storyService', ['$http', function($http) {
   return {
+    currentPageIndex: 0,
+    currentRcdCount: undefined,
+
     all: function() {
       var url = "http://laravel5.restapi.localhost/story";
       //console.log("storyService.all()");
