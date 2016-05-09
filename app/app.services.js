@@ -14,9 +14,16 @@ restApiClientApp
         }
       }
     },
+    arrayChunk: function(ary, len) {
+      var multiDimAry = [],
+          i = 0,
+          n = ary.length;
 
-    testFunc: function() {
-      console.log("testFunc");
+      while (i < n) {
+        multiDimAry.push(ary.slice(i, i += len));
+      }
+
+      return multiDimAry;
     }
   };
 

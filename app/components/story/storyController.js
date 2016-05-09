@@ -1,13 +1,25 @@
 restApiClientApp
-.controller('AllStoryController', ['$scope', '$route', 'allStoryData', 'storyService',
-    function($scope, $route, allStoryData, storyService) {
+// AllStoryController
+.controller('AllStoryController', ['$scope', '$route', 'allStoryData', 'storyService', 'utilService',
+    function($scope, $route, allStoryData, storyService, utilService) {
   $scope.allStoryData = [];
+  var storyDataChunks = [];
+  $scope.currentStoryChunk = [];
+  var chunkLength = 6;
+  var currentPageIndex = 0;
+  var lastPageIndex = 0;
   
   if (allStoryData.status == 200) // OK
   {
     $scope.allStoryData = allStoryData.data;
     //console.log("AllStoryController data");
     //console.log($scope.allStoryData);
+
+    // Break the story data into chunks for table pagination
+    storyDataChunks = utilService.arrayChunk($scope.allStoryData, chunkLength);
+    lastPageIndex = storyDataChunks.length - 1;
+    //console.log(storyDataChunks);
+    $scope.currentStoryChunk = storyDataChunks[currentPageIndex];
   }
   else {  // Error
     console.log("Error retrieving 'allStoryData'");
@@ -15,13 +27,39 @@ restApiClientApp
     console.log("response.statusText: " + allStoryData.statusText);
   }
 
+  // Story table pagination
+  $scope.nextPage = function() {
+    if (currentPageIndex < lastPageIndex) {
+      //console.log("nextPage()");
+      currentPageIndex++;
+      $scope.currentStoryChunk = storyDataChunks[currentPageIndex];
+    }
+  }
+
+  $scope.prevPage = function() {
+    if (currentPageIndex > 0) {
+      //console.log("prevPage()");
+      currentPageIndex--;
+      $scope.currentStoryChunk = storyDataChunks[currentPageIndex];
+    }
+  }
+
+  $scope.isFirstPage = function() {
+    return currentPageIndex == 0;
+  }
+
+  $scope.isLastPage = function() {
+    return currentPageIndex == lastPageIndex;
+  }
+
+  // Set current story for deletion
   $scope.currentStory = {};
   $scope.setCurrentStory = function(id, title) {
     $scope.currentStory.id = id;
     $scope.currentStory.title = title;
   }
 
-  // Event handler to reload the current page once the modal has finished being hidden
+  // Event handler to reload the current page once the delete story modal dialog has finished being hidden
   $('#delete-story-modal').on('hidden.bs.modal', function (e) {
     console.log('hidden.bs.modal event handler called');
     $route.reload();
@@ -57,6 +95,7 @@ restApiClientApp
     console.log("response.statusText: " + singleStoryData.statusText);
   }
 }])
+// CreateStoryController
 .controller('CreateStoryController', ['$scope', '$window', 'storyService',
   function($scope, $window, storyService) {
   //console.log("CreateStoryController");
@@ -78,6 +117,7 @@ restApiClientApp
     });
   };
 }])
+// EditStoryController
 .controller('EditStoryController',
   ['$scope', '$window', '$routeParams', 'storyService', 'utilService',
     function($scope, $window, $routeParams, storyService, utilService) {
