@@ -1,10 +1,10 @@
 restApiClientApp
 .factory('storyService', ['$http', 'loginService', function($http, loginService) {
   var config = {
-    headers: { 'Authorization' : 'Basic ' + loginService.encodedCredentials }
+    headers: { 'Authorization' : 'Basic ' + loginService.getCredentials() }
   }
 
-  console.log("From 'storyService' - loginService.encodedCredentials: " + loginService.encodedCredentials);
+  //console.log("From 'storyService' - loginService.getCredentials(): " + loginService.getCredentials());
 
   return {
     currentPageIndex: 0,

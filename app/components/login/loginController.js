@@ -2,11 +2,14 @@ restApiClientApp.controller('LoginController', ['$scope', '$window', 'loginServi
   $scope.email;
   $scope.password;
 
+  // Clear out the credentials
+  loginService.setCredentials("");
+
   $scope.login = function() {
     //console.log("Hello " + $scope.email);
 
-    loginService.encodedCredentials = $window.btoa($scope.email + ":" + $scope.password);
-    console.log("From 'LoginController' - loginService.encodedCredentials: " + loginService.encodedCredentials);
+    loginService.setCredentials($window.btoa($scope.email + ":" + $scope.password));
+    //console.log("From 'LoginController' - loginService.encodedCredentials: " + loginService.getCredentials());
 
     // Redirect to story index view
     $window.location.href = '/#/story';
