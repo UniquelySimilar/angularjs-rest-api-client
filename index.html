@@ -15,6 +15,10 @@
   </div-->
 
   <div class="container">
+    <div data-ng-controller="NavbarController">
+      <input type="button" class="btn btn-default" value="Logout" data-ng-click="logout()">
+      <span>(Navbar coming soon)</span>
+    </div>
     <h2>Rest API Client</h2>
 
     <div data-ng-view></div>
@@ -28,6 +32,7 @@
   <script src="app/app.module.js"></script>
   <script src="app/app.routes.js"></script>
   <script src="app/app.services.js"></script>
+  <script src="app/components/navbar/navbarController.js"></script>
   <script src="app/components/login/loginController.js"></script>
   <script src="app/components/login/loginService.js"></script>
   <script src="app/components/story/storyService.js"></script>
