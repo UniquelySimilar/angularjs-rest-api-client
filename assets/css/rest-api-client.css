@@ -1,3 +1,6 @@
+#login-form label {
+  width: 10%;
+}
 #story-show-table tr td:first-child {
   font-weight: bold;
   width: 15%;

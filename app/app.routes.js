@@ -1,5 +1,9 @@
 restApiClientApp.config(function($routeProvider) {
   $routeProvider
+    .when('/', {
+      templateUrl : 'app/components/login/views/loginFormView.html',
+      controller  : 'LoginController'
+    })
     .when('/story', {
       templateUrl : 'app/components/story/views/storyIndexView.html',
       controller  : 'AllStoryController',
@@ -31,6 +35,6 @@ restApiClientApp.config(function($routeProvider) {
       controller  : 'EditStoryController'
     })
     .otherwise({
-      redirectTo: '/story'
+      redirectTo: '/'
     });
 });

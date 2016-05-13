@@ -1,5 +1,11 @@
 restApiClientApp
-.factory('storyService', ['$http', function($http) {
+.factory('storyService', ['$http', 'loginService', function($http, loginService) {
+  var config = {
+    headers: { 'Authorization' : 'Basic ' + loginService.encodedCredentials }
+  }
+
+  console.log("From 'storyService' - loginService.encodedCredentials: " + loginService.encodedCredentials);
+
   return {
     currentPageIndex: 0,
     currentRcdCount: undefined,
@@ -7,14 +13,14 @@ restApiClientApp
     all: function() {
       var url = "http://laravel5.restapi.localhost/story";
       //console.log("storyService.all()");
-      var promise = $http.get(url);
+      var promise = $http.get(url, config);
 
       return promise;
     },
     find: function(id) {
       var url = "http://laravel5.restapi.localhost/story/" + id;
       //console.log("storyService.find()");
-      var promise = $http.get(url);
+      var promise = $http.get(url, config);
 
       return promise;
     },
