@@ -29,7 +29,7 @@ restApiClientApp
       //console.log(story);
       
       var url = "http://laravel5.restapi.localhost/story";
-      var promise = $http.post(url, story);
+      var promise = $http.post(url, story, config);
 
       return promise;
     },
@@ -38,7 +38,7 @@ restApiClientApp
       //console.log(story);
       
       url = "http://laravel5.restapi.localhost/story/" + story.id;
-      var promise = $http.put(url, story);
+      var promise = $http.put(url, story, config);
 
       return promise;
     },
@@ -46,7 +46,7 @@ restApiClientApp
       console.log("storyService.delete() for id = " + id);
       
       url = "http://laravel5.restapi.localhost/story/" + id;
-      var promise = $http.delete(url);
+      var promise = $http.delete(url, config);
 
       return promise;
     }
