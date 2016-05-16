@@ -13,7 +13,17 @@ restApiClientApp.config(function($routeProvider) {
       // See https://docs.angularjs.org/api/ngRoute/provider/$routeProvider
       resolve: {
         allStoryData: function(storyService) {
-          return storyService.all();
+          var promise = storyService.all();
+          promise.then(
+          function() {
+            //console.log("promise resolved");
+          },
+          function(rejectReason) {
+            console.log("promise rejected");
+            console.log(rejectReason);
+          });
+
+          return promise;
         }
       }
     })

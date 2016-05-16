@@ -7,12 +7,22 @@ restApiClientApp.controller('LoginController', ['$scope', '$window', 'loginServi
 
   $scope.login = function() {
     //console.log("Hello " + $scope.email);
+    var credentials = $window.btoa($scope.email + ":" + $scope.password);
 
-    loginService.setCredentials($window.btoa($scope.email + ":" + $scope.password));
-    //console.log("From 'LoginController' - loginService.encodedCredentials: " + loginService.getCredentials());
+    var promise = loginService.login(credentials);
 
-    // Redirect to story index view
-    $window.location.href = '/#/story';
+    promise.then(
+      function(response) {
+        loginService.setCredentials(credentials);
+        // Redirect to story index view
+        $window.location.href = '/#/story';
+      },
+      function(rejectReason) {
+        console.log("login rejected");
+        //console.log(rejectReason);
+      }
+    )
+
   };
 
 }]);
