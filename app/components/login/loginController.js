@@ -14,12 +14,14 @@ restApiClientApp.controller('LoginController', ['$scope', '$window', 'loginServi
     promise.then(
       function(response) {
         loginService.setCredentials(credentials);
+        console.log(response.status);
+        
         // Redirect to story index view
         $window.location.href = '/#/story';
       },
       function(rejectReason) {
-        console.log("login rejected");
-        //console.log(rejectReason);
+        console.log("LoginController: login rejected");
+        console.log(rejectReason);
       }
     )
 
