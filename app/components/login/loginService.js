@@ -8,7 +8,7 @@ restApiClientApp
       localStorage.setItem("credentials", credentials);
     },
     login: function(credentials) {
-      console.log("loginService.login()");
+      //console.log("loginService.login()");
 
       var url = "http://laravel5.restapi.localhost/login";
       var config = {

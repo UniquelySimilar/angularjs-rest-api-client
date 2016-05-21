@@ -28,11 +28,12 @@ restApiClientApp
   };
 
   return utilService;
-}])
+}]);
 // HTTP code 401 - unauthorized interceptor
+/*
 .factory('http401interceptor', function($q, $location) {
   return {
-    /* NOTE: this wasn't called on HTTP 401 status code
+    // NOTE: this wasn't called on HTTP 401 status code
     response: function(response) {
       // do something on success
       console.log("response interceptor called");
@@ -40,7 +41,6 @@ restApiClientApp
 
       return response;
     },
-    */
     responseError: function(response) {
       console.log("response error interceptor called");
       console.log("response.status: " + response.status);
@@ -57,4 +57,4 @@ restApiClientApp
     }
   };
 })
-;
+*/
