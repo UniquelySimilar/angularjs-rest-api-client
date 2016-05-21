@@ -1,3 +1,5 @@
+"use strict";
+
 restApiClientApp.config(function($routeProvider) {
   $routeProvider
     .when('/', {

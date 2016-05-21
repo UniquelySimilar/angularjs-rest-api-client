@@ -1,3 +1,5 @@
+"use strict";
+
 restApiClientApp
 .factory('loginService', ['$http', function($http) {
   return {

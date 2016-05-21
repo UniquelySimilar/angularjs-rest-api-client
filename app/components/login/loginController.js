@@ -1,3 +1,5 @@
+"use strict";
+
 restApiClientApp.controller('LoginController', ['$scope', '$window', 'loginService', function($scope, $window, loginService) {
   $scope.email;
   $scope.password;

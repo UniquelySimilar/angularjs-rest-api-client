@@ -1,3 +1,5 @@
+"use strict";
+
 restApiClientApp
 // AllStoryController
 .controller('AllStoryController', ['$scope', '$route', 'allStoryData', 'storyService', 'utilService',
@@ -8,37 +10,29 @@ restApiClientApp
   var chunkLength = 6;
   var lastPageIndex = 0;
   
-  if (allStoryData.status == 200) // OK
-  {
-    $scope.allStoryData = allStoryData.data;
-    //console.log("AllStoryController data");
-    //console.log($scope.allStoryData);
+  $scope.allStoryData = allStoryData.data;
+  //console.log("AllStoryController data");
+  //console.log($scope.allStoryData);
 
-    // Break the story data into chunks for table pagination
-    storyDataChunks = utilService.arrayChunk($scope.allStoryData, chunkLength);
-    lastPageIndex = storyDataChunks.length - 1;
-    //console.log(storyDataChunks);
+  // Break the story data into chunks for table pagination
+  storyDataChunks = utilService.arrayChunk($scope.allStoryData, chunkLength);
+  lastPageIndex = storyDataChunks.length - 1;
+  //console.log(storyDataChunks);
 
-    // Handle case where deleted story was only story on last page
-    if (storyService.currentPageIndex > lastPageIndex) {
-      storyService.currentPageIndex = lastPageIndex;
-    }
-
-    // Handle case where new story resulted in new page
-    if (storyService.currentRcdCount != undefined &&  // Has been initialized
-     ($scope.allStoryData.length > storyService.currentRcdCount) &&
-      (($scope.allStoryData.length % chunkLength) == 1) ) {
-      storyService.currentPageIndex++;
-    }
-    storyService.currentRcdCount = $scope.allStoryData.length;
-
-    $scope.currentStoryChunk = storyDataChunks[storyService.currentPageIndex];
+  // Handle case where deleted story was only story on last page
+  if (storyService.currentPageIndex > lastPageIndex) {
+    storyService.currentPageIndex = lastPageIndex;
   }
-  else {  // Error
-    console.log("Error retrieving 'allStoryData'");
-    console.log("response.status: " + allStoryData.status);
-    console.log("response.statusText: " + allStoryData.statusText);
+
+  // Handle case where new story resulted in new page
+  if (storyService.currentRcdCount != undefined &&  // Has been initialized
+   ($scope.allStoryData.length > storyService.currentRcdCount) &&
+    (($scope.allStoryData.length % chunkLength) == 1) ) {
+    storyService.currentPageIndex++;
   }
+  storyService.currentRcdCount = $scope.allStoryData.length;
+
+  $scope.currentStoryChunk = storyDataChunks[storyService.currentPageIndex];
 
   // Story table pagination
   $scope.nextPage = function() {
@@ -74,7 +68,7 @@ restApiClientApp
 
   // Event handler to reload the current page once the delete story modal dialog has finished being hidden
   $('#delete-story-modal').on('hidden.bs.modal', function (e) {
-    console.log('hidden.bs.modal event handler called');
+    //console.log('hidden.bs.modal event handler called');
     $route.reload();
   })
 
@@ -96,18 +90,10 @@ restApiClientApp
     function($scope, singleStoryData, utilService) {
   $scope.story = {};
   
-  if (singleStoryData.status == 200) // OK
-  {
-    $scope.story = singleStoryData.data;
-    //console.log("SingleStoryController data");
-    //console.log($scope.story);
-    utilService.replaceNull($scope.story);
-  }
-  else {  // Error
-    console.log("Error retrieving 'singleStoryData'");
-    console.log("response.status: " + singleStoryData.status);
-    console.log("response.statusText: " + singleStoryData.statusText);
-  }
+  $scope.story = singleStoryData.data;
+  //console.log("SingleStoryController data");
+  //console.log($scope.story);
+  utilService.replaceNull($scope.story);
 }])
 // CreateStoryController
 .controller('CreateStoryController', ['$scope', '$window', 'storyService',

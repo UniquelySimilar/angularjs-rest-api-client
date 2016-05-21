@@ -1,3 +1,5 @@
+"use strict";
+
 restApiClientApp
 .factory('storyService', ['$http', 'loginService', function($http, loginService) {
   var config = {
@@ -37,15 +39,15 @@ restApiClientApp
       //console.log("storyService.update()");
       //console.log(story);
       
-      url = "http://laravel5.restapi.localhost/story/" + story.id;
+      var url = "http://laravel5.restapi.localhost/story/" + story.id;
       var promise = $http.put(url, story, config);
 
       return promise;
     },
     delete: function(id) {
-      console.log("storyService.delete() for id = " + id);
+      //console.log("storyService.delete() for id = " + id);
       
-      url = "http://laravel5.restapi.localhost/story/" + id;
+      var url = "http://laravel5.restapi.localhost/story/" + id;
       var promise = $http.delete(url, config);
 
       return promise;

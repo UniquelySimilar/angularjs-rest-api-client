@@ -1,3 +1,5 @@
+"use strict";
+
 restApiClientApp
 .factory('utilService', [function() {
   var utilService = {
@@ -29,32 +31,3 @@ restApiClientApp
 
   return utilService;
 }]);
-// HTTP code 401 - unauthorized interceptor
-/*
-.factory('http401interceptor', function($q, $location) {
-  return {
-    // NOTE: this wasn't called on HTTP 401 status code
-    response: function(response) {
-      // do something on success
-      console.log("response interceptor called");
-      console.log("response.status: " + response.status);
-
-      return response;
-    },
-    responseError: function(response) {
-      console.log("response error interceptor called");
-      console.log("response.status: " + response.status);
-
-      if(response.status == 401) {
-        console.log("HTTP 401 status code intercepted");
-
-        //$location.path('/login');
-        return $q.reject(response);
-      }
-      else {
-        return $q.reject(response);
-      }
-    }
-  };
-})
-*/

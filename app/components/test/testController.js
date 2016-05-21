@@ -1,3 +1,5 @@
+"use strict";
+
 restApiClientApp
 .controller('TestController', ['$scope', '$http', 'createStoryService', function($scope, $http, createStoryService) {
   $scope.testFunction = function($http) {
