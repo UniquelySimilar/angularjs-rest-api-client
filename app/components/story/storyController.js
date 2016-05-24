@@ -108,17 +108,28 @@ restApiClientApp
     //console.log("CreateStoryController.store()");
     //console.log(story);
 
-    // TODO: Add form validation on client and/or on server
     var promise = storyService.save(story);
-    promise.then(function(response) {
-      //console.log("Story creation succeeded");
+    promise.then(
+      function(response) {
+        //console.log("Story creation succeeded");
 
-      // Redirect to index view
-      $window.location.href = '/#/story';
-    }, function(rejectReason){
-      console.log("Story creation failed: " + rejectReason);
-    });
+        // Redirect to index view
+        $window.location.href = '/#/story';
+      },
+      function(rejectReason){
+        //console.log("Story creation failed");
+        //console.log(rejectReason);
+        if (rejectReason.status == 422) {
+          //console.log("Unprocessable Entity");
+          if (rejectReason.data.title != undefined) {
+              //console.log("title in rejectReason.data");
+              $scope.titleInvalidMsg = rejectReason.data.title[0];
+          }
+        }
+      }
+    );
   };
+
 }])
 // EditStoryController
 .controller('EditStoryController',
@@ -157,7 +168,8 @@ restApiClientApp
         $window.location.href = '/#/story/' + id;
       },
       function(rejectReason) {
-        console.log("Story update failed: " + rejectReason);
+        console.log("Story update failed");
+        console.log(rejectReason);
       }
     );
   };

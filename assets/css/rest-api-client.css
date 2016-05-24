@@ -15,6 +15,10 @@
   width: 15%;
 }
 
+#story-create-form input[type="text"] {
+  width: 35%;
+}
+
 #story-note {
   vertical-align: text-top;
 }

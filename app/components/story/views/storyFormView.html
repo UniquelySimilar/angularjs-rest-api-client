@@ -2,8 +2,8 @@
 <form id="story-create-form" novalidate class="">
   <div class="form-group">
     <label for="story-title">Title</label>
-    <input type="text" id="story-title" data-ng-model="story.title">
-    <!--span class="error-msg" data-ng-show="storyError.title">{{ storyError.title }}</span-->
+    <input type="text" id="story-title" data-ng-model="story.title" data-ng-disabled="formFunction == 'EDIT'">
+    <span class="error-msg" data-ng-show="titleInvalidMsg">* {{ titleInvalidMsg }}</span>
   </div>
   <div class="form-group">
     <label for="story-publication">Publication</label>
