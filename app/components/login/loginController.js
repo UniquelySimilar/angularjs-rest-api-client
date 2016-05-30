@@ -9,8 +9,10 @@ restApiClientApp.controller('LoginController', ['$scope', '$window', 'loginServi
   loginService.setCredentials("");
 
   $scope.login = function() {
+    //console.log("LoginController.login()");
     //console.log("Hello " + $scope.email);
     var credentials = $window.btoa($scope.email + ":" + $scope.password);
+    //console.log("credentials: " + credentials);
 
     var promise = loginService.login(credentials);
 

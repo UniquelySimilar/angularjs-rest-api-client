@@ -13,19 +13,10 @@ restApiClientApp.config(function($routeProvider) {
       // returns a promise.
       // The router will wait for the promise to be resolved or rejected before the controller is instantiated.
       // See https://docs.angularjs.org/api/ngRoute/provider/$routeProvider
+      // If the promise is rejected, the $routeChangeError will be handled $rootScope in appController
       resolve: {
         storyIndexData: function(storyService) {
-          var promise = storyService.all();
-          promise.then(
-          function() {
-            //console.log("promise resolved");
-          },
-          function(rejectReason) {
-            console.log("promise rejected");
-            console.log(rejectReason);
-          });
-
-          return promise;
+          return storyService.all();
         }
       }
     })

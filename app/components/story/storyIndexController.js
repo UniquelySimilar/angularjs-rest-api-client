@@ -4,7 +4,7 @@ restApiClientApp
 .controller('StoryIndexController', ['$scope', '$route', 'storyIndexData', 'storyService', 'utilService',
     function($scope, $route, storyIndexData, storyService, utilService) {
   var storyDataChunks = [];
-  $scope.currentStoryChunk = [];
+  //$scope.currentStoryChunk = [];
   var chunkLength = 6;
   var lastPageIndex = 0;
   
