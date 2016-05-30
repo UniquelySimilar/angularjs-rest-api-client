@@ -8,13 +8,13 @@ restApiClientApp.config(function($routeProvider) {
     })
     .when('/story', {
       templateUrl : 'app/components/story/views/storyIndexView.html',
-      controller  : 'AllStoryController',
+      controller  : 'StoryIndexController',
       // 'resolve' is a map of dependencies injected into the controller.  'storyService.getIndexData()'
       // returns a promise.
       // The router will wait for the promise to be resolved or rejected before the controller is instantiated.
       // See https://docs.angularjs.org/api/ngRoute/provider/$routeProvider
       resolve: {
-        allStoryData: function(storyService) {
+        storyIndexData: function(storyService) {
           var promise = storyService.all();
           promise.then(
           function() {
@@ -31,20 +31,20 @@ restApiClientApp.config(function($routeProvider) {
     })
     .when('/story/create', {
       templateUrl : 'app/components/story/views/storyFormView.html',
-      controller  : 'CreateStoryController'
+      controller  : 'StoryCreateController'
     })
     .when('/story/:id', {
       templateUrl : 'app/components/story/views/storyShowView.html',
-      controller  : 'SingleStoryController',
+      controller  : 'StoryDetailController',
       resolve: {
-        singleStoryData: function($route, storyService) {
+        storyDetailData: function($route, storyService) {
           return storyService.find($route.current.params.id);
         }
       }
     })
     .when('/story/:id/edit', {
       templateUrl : 'app/components/story/views/storyFormView.html',
-      controller  : 'EditStoryController'
+      controller  : 'StoryEditController'
     })
     .otherwise({
       redirectTo: '/'
