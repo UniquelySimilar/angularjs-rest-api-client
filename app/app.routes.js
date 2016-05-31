@@ -37,6 +37,28 @@ restApiClientApp.config(function($routeProvider) {
       templateUrl : 'app/components/story/views/storyFormView.html',
       controller  : 'StoryEditController'
     })
+    .when('/other', {
+      templateUrl : 'app/components/other/views/otherIndexView.html',
+      controller  : 'OtherIndexController'
+      /*
+      resolve: {
+        otherIndexData: function(otherService) {
+          return otherService.all();
+        }
+      }
+      */
+    })
+    .when('/press', {
+      templateUrl : 'app/components/press/views/pressIndexView.html',
+      controller  : 'PressIndexController'
+      /*
+      resolve: {
+        pressIndexData: function(pressService) {
+          return pressService.all();
+        }
+      }
+      */
+    })
     .otherwise({
       redirectTo: '/'
     });
