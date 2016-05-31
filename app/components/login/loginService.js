@@ -1,7 +1,7 @@
 "use strict";
 
 restApiClientApp
-.factory('loginService', ['$http', function($http) {
+.factory('loginService', ['$http', '$window', function($http, $window) {
   return {
     getCredentials: function() {
       var credentials = localStorage.getItem("credentials");
@@ -23,6 +23,16 @@ restApiClientApp
       var promise = $http.get(url, config);
 
       return promise;
+    },
+    isLoggedIn: function() {
+      var retVal = true;
+
+      if (this.getCredentials() == "") {
+        retVal = false;
+        $window.location.href = '/#/login';
+      }
+
+      return retVal;
     }
   };
 }]);

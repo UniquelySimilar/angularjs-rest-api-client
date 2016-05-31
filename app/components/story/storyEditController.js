@@ -2,25 +2,28 @@
 
 restApiClientApp
 .controller('StoryEditController',
-  ['$scope', '$window', '$routeParams', 'storyService', 'utilService',
-    function($scope, $window, $routeParams, storyService, utilService) {
+  ['$scope', '$window', '$routeParams', 'storyService', 'utilService', 'loginService',
+    function($scope, $window, $routeParams, storyService, utilService, loginService) {
   //console.log("StoryEditController");
 
   $scope.formFunction = "EDIT";
   var id = $routeParams.id;
   //console.log("ID: " + id);
 
-  var singleStoryPromise = storyService.find(id);
-  singleStoryPromise.then(
-    function(response) {
-      //console.log("Story find succeeded");
-      $scope.story = response.data;
-      utilService.replaceNull($scope.story);
-    },
-    function(rejectReason) {
-      console.log("Story find failed: " + rejectReason);
-    }
-  );
+  if (loginService.isLoggedIn()) {
+    var singleStoryPromise = storyService.find(id);
+    singleStoryPromise.then(
+      function(response) {
+        //console.log("Story find succeeded");
+        $scope.story = response.data;
+        utilService.replaceNull($scope.story);
+      },
+      function(rejectReason) {
+        console.log("Story find rejected");
+        console.log(rejectReason);
+      }
+    );
+  }
 
   $scope.save = function(story) {
     //console.log("StoryEditController.save()");

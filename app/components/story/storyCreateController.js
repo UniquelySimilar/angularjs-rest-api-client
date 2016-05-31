@@ -1,9 +1,13 @@
 "use strict";
 
 restApiClientApp
-.controller('StoryCreateController', ['$scope', '$window', 'storyService',
-  function($scope, $window, storyService) {
+.controller('StoryCreateController', ['$scope', '$window', 'storyService', 'loginService',
+  function($scope, $window, storyService, loginService) {
   //console.log("CreateStoryController");
+
+  // Verify user logged in
+  loginService.isLoggedIn();
+
   $scope.formFunction = "CREATE";
 
   // Set focus on story title
