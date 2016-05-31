@@ -12,7 +12,7 @@
 <body data-ng-app="restApiClientApp" data-ng-controller="appController">
 
   <!-- Static navbar -->
-  <nav class="navbar navbar-default navbar-static-top">
+  <nav class="navbar navbar-default navbar-static-top" data-ng-controller="NavbarController">
     <div class="container">
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -25,9 +25,15 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-          <li class="active"><a href="/#/story">Stories</a></li>
-          <li><a href="/#/other">Other</a></li>
-          <li><a href="/#/press">Press</a></li>
+          <li data-ng-class="isActiveMenuItem(0)">
+            <a href="/#/story" data-ng-click="setActiveMenuItem(0)">Stories</a>
+          </li>
+          <li data-ng-class="isActiveMenuItem(1)">
+            <a href="/#/other" data-ng-click="setActiveMenuItem(1)">Other</a>
+          </li>
+          <li data-ng-class="isActiveMenuItem(2)">
+            <a href="/#/press" data-ng-click="setActiveMenuItem(2)">Press</a>
+          </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><a href="/#/login">Logout</a></li>
