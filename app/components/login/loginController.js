@@ -3,6 +3,9 @@
 restApiClientApp.controller('LoginController', ['$scope', '$window', 'loginService', function($scope, $window, loginService) {
   $scope.email;
   $scope.password;
+  $scope.$parent.showMenu = false;
+
+  console.log("LoginController parent scope showMenu: " + $scope.$parent.showMenu);
 
   // Clear out the credentials
   loginService.setCredentials("");
@@ -19,6 +22,8 @@ restApiClientApp.controller('LoginController', ['$scope', '$window', 'loginServi
       function(response) {
         //console.log(response.status);
         loginService.setCredentials(credentials);
+
+        $scope.$parent.showMenu = true;
         
         // Redirect to story index view
         $window.location.href = '/#/story';
@@ -29,6 +34,7 @@ restApiClientApp.controller('LoginController', ['$scope', '$window', 'loginServi
         if (rejectReason.status == 401) {
           console.log("User not authorized");
           $scope.loginError = true;
+          $scope.$parent.showMenu = false;
         }
       }
     )

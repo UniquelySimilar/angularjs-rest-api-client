@@ -2,6 +2,8 @@
 
 restApiClientApp
 .controller('appController', function($rootScope, $window) {
+  $rootScope.showMenu = false;
+
   $rootScope.$on("$routeChangeError", 
                  function (event, current, previous, rejection) {
     console.log("failed to change routes");

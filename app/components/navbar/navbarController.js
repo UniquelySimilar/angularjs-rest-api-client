@@ -2,6 +2,8 @@
 
 restApiClientApp.controller('NavbarController', ['$scope', function($scope) {
   $scope.activeMenuItem = 0;
+  $scope.showMenu = $scope.$parent.showMenu;
+  
   $scope.setActiveMenuItem = function(item) {
     //console.log("setActiveMenuItem");
     $scope.activeMenuItem = item;
